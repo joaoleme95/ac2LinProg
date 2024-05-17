@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #0056b3;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#" data-file="tags-html">Tags HTML</a></li>
+            <li><a href="#" data-file="css-fundamentos">CSS Fundamentos</a></li>
+            <li><a href="#" data-file="flexbox">Flexbox</a></li>
+            <li><a href="#" data-file="dom">DOM</a></li>
+        </ul>
+    </nav>
+    <div class="content" id="content">
+        <h2>Selecione uma atividade no menu</h2>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const links = document.querySelectorAll(".sidebar a");
+        const contentDiv = document.getElementById("content");
+
+        const content = {
+            "tags-html": `
+                    <h2>Tags HTML</h2>
+                    <p>Esta é a atividade sobre Tags HTML.</p>
+                `,
+            "css-fundamentos": `
+                    <h2>CSS Fundamentos</h2>
+                    <p>Esta é a atividade sobre Fundamentos de CSS.</p>
+                `,
+            "flexbox": `
+                    <h2>Flexbox</h2>
+                    <p>Esta é a atividade sobre Flexbox.</p>
+                `,
+            "dom": `
+                    <h2>DOM</h2>
+                    <p>Esta é a atividade sobre DOM.</p>
+                `
+        };
+
+        links.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                const file = this.getAttribute("data-file");
+                contentDiv.innerHTML = content[file] || "<p>Erro ao carregar a atividade.</p>";
+            });
+        });
+    });
+</script>
+</body>
+</html>
