@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Palavras</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .word-counter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        .word-counter textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        .word-counter button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .word-counter button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="word-counter">
+    <h2>Contador de Palavras</h2>
+    <textarea id="textInput" rows="5" placeholder="Digite seu texto aqui..."></textarea>
+    <button id="countButton">Contar Palavras</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textInput = document.getElementById("textInput");
+        const countButton = document.getElementById("countButton");
+        const resultDiv = document.getElementById("result");
+
+        countButton.addEventListener("click", function() {
+            const text = textInput.value.trim();
+            if (text === "") {
+                resultDiv.textContent = "Por favor, insira um texto.";
+                return;
+            }
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            resultDiv.textContent = `Número de palavras: ${words.length}`;
+        });
+    });
+</script>
+</body>
+</html>
